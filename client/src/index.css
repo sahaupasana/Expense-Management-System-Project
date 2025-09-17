@@ -1,10 +1,101 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-.content{
-  height : 80vh;
+.content {
+  height: 80vh;
 }
 
+.register-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+/* Common styles for both login and register pages */
+.login-page,
+.register-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #05ec6da1 0%, #ACB6E5 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-page .ant-form,
+.register-page .ant-form {
+  background: #fff;
+  padding: 40px 50px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+.login-page .ant-form h1,
+.register-page .ant-form h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.login-page .subtitle,
+.register-page .subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.login-page .ant-form-item-label>label,
+.register-page .ant-form-item-label>label {
+  font-weight: 500;
+  color: #444;
+}
+
+.login-page .ant-btn-primary,
+.register-page .ant-btn-primary {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  border: none;
+  width: 150px;          /* fixed width (not too wide) */
+  height: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.login-page .ant-btn-primary:hover,
+.register-page .ant-btn-primary:hover {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.login-page .ant-checkbox-wrapper,
+.register-page .ant-checkbox-wrapper {
+  color: #555;
+}
+
+.login-page .ant-form a,
+.register-page .ant-form a {
+  color: #1890ff;
+  font-weight: 500;
+}
+
+.login-page .ant-form a:hover,
+.register-page .ant-form a:hover {
+  text-decoration: underline;
+}
+
+.login-page .ant-form .ant-form-item:last-child,
+.register-page .ant-form .ant-form-item:last-child {
+  display: flex;
+  justify-content: center;
+}
