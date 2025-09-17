@@ -4,19 +4,24 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev":"concurrently \"npm run server\" \"npm run client\" "
   },
   "keywords": [],
   "author": "Upasana",
   "license": "ISC",
   "description": "Expense Management System",
   "dependencies": {
+    "bootstrap": "^5.3.8",
     "colors": "^1.4.0",
+    "concurrently": "^9.2.1",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "mongoose": "^8.18.1",
     "morgan": "^1.10.1",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "react-bootstrap": "^2.10.10"
   }
 }

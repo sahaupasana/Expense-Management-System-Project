@@ -1,43 +1,55 @@
-import React from 'react'
-import { Button, Checkbox, Form, Input } from 'antd';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Button, Checkbox, Form, Input, message } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from "axios";
+import Spinner from "../components/Spinner";
 // import FormItem from 'antd/es/form/FormItem';
 
-const onFinish = values => {
-  console.log('Success:', values);
-};
-
-const onFinishFailed = errorInfo => {
-  console.log('Failed:', errorInfo);
-};
-
 const Register = () => {
+
+  const navigate = useNavigate()
+  const [Loading, setLoading] = useState(false)
+
+  const onFinish = async (values) => {
+    // console.log('Success:', values);
+    try {
+      setLoading(true)
+      await axios.post('/users/register', values)
+      message.success('Registration Successful')
+      setLoading(false)
+      navigate("/login")
+    } catch (error) {
+      setLoading(false)
+      message.error('Something went wrong')
+    }
+  };
+
+
   return (
     <>
       <div className='register-page'>
+        {Loading && <Spinner />}
         <Form
           name="basic"
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           style={{ maxWidth: 600 }}
-          initialValues={{ remember: true }}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
           <h1> Registration Form</h1>
-          <br/>
+          <br />
           <Form.Item
-            label="Username"
-            name="username"
+            label="Name"
+            name="name"
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
             <Input />
           </Form.Item>
 
           <Form.Item
-            label="Email-id"
-            name="email-id"
+            label="Email"
+            name="email"
             rules={[{ required: true, message: 'Please input your Email-id!' }]}
           >
             <Input />
@@ -55,11 +67,11 @@ const Register = () => {
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
 
-          
-            <div style={{ display: "flex"}}>
-              <Link to="/Login">Already Registered? Login Here</Link>
-            </div>
-<br/>
+
+          <div style={{ display: "flex" }}>
+            <Link to="/Login">Already Registered? Login Here</Link>
+          </div>
+          <br />
           <Form.Item label={null} wrapperCol={{ span: 30 }}>
             <Button type="primary" htmlType="submit">
               Register

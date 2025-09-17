@@ -1,19 +1,34 @@
-import React from 'react'
-import { Button, Checkbox, Form, Input } from 'antd';
-import { Link } from 'react-router-dom';
-
-const onFinish = values => {
-    console.log('Success:', values);
-};
-
-const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
-};
+import React, { useState } from 'react'
+import { Button, Checkbox, Form, Input, message } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import Password from 'antd/es/input/Password';
+import axios from "axios";
+import Spinner from "../components/Spinner";
 
 const Login = () => {
+
+    const [Loading, setLoading] = useState(false)
+    const navigate = useNavigate()
+
+    const onFinish = async (values) => {
+
+        try {
+            setLoading(true)
+            const { data } = await axios.post('/users/login', values)
+            setLoading(false)
+            message.success('Login Successful')
+            localStorage.setItem('user', JSON.stringify({ ...data.user, Password: '' }))
+            navigate("/")
+        } catch (error) {
+            setLoading(false)
+            message.error('Something went wrong')
+        }
+    };
+
     return (
         <>
             <div className='login-page'>
+                {Loading && <Spinner/>}
                 <Form
                     name="basic"
                     labelCol={{ span: 8 }}
@@ -21,14 +36,13 @@ const Login = () => {
                     style={{ maxWidth: 600 }}
                     initialValues={{ remember: true }}
                     onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
                     autoComplete="off"
                 >
                     <h1> Login Form</h1>
                     <br />
                     <Form.Item
-                        label="Email-id"
-                        name="email-id"
+                        label="Email"
+                        name="email"
                         rules={[{ required: true, message: 'Please input your Email-id!' }]}
                     >
                         <Input />
@@ -47,10 +61,10 @@ const Login = () => {
                     </Form.Item>
 
 
-                    <div style={{ display: "flex"}}>
+                    <div style={{ display: "flex" }}>
                         <Link to="/Register">Not a User ? Register Here</Link>
                     </div>
-<br/>
+                    <br />
                     <Form.Item label={null} wrapperCol={{ span: 24 }}>
                         <Button type="primary" htmlType="submit">
                             Login
