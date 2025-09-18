@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Button, Checkbox, Form, Input, message } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
-import Password from 'antd/es/input/Password';
 import axios from "axios";
 import Spinner from "../components/Spinner";
 
-const Login = () => {
+const Login = ({ messageApi }) => {
+
 
     const [Loading, setLoading] = useState(false)
     const navigate = useNavigate()
@@ -16,19 +16,37 @@ const Login = () => {
             setLoading(true)
             const { data } = await axios.post('/users/login', values)
             setLoading(false)
-            message.success('Login Successful')
-            localStorage.setItem('user', JSON.stringify({ ...data.user, Password: '' }))
+            messageApi.success("Login Successful")
+            localStorage.setItem('user', JSON.stringify({ ...data.user, password: '' }))
             navigate("/")
         } catch (error) {
             setLoading(false)
-            message.error('Something went wrong')
+            messageApi.error('Something went wrong')
         }
     };
+
+    //prevent for user login
+      useEffect(()=>{
+        if(localStorage.getItem('user')){
+          navigate("/");
+        }
+      },[navigate])
+    
 
     return (
         <>
             <div className='login-page'>
-                {Loading && <Spinner/>}
+
+                {Loading && (
+                    <div className="loading-overlay">
+                        <div className="loading-card">
+                            <Spinner />
+                            <p className="loading-text">
+                                Logging in...
+                            </p>
+                        </div>
+                    </div>
+                )}
                 <Form
                     name="basic"
                     labelCol={{ span: 8 }}
@@ -55,11 +73,6 @@ const Login = () => {
                     >
                         <Input.Password />
                     </Form.Item>
-
-                    <Form.Item name="remember" valuePropName="checked" label={null}>
-                        <Checkbox>Remember me</Checkbox>
-                    </Form.Item>
-
 
                     <div style={{ display: "flex" }}>
                         <Link to="/Register">Not a User ? Register Here</Link>

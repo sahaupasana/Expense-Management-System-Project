@@ -6,13 +6,14 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
-    "dev":"concurrently \"npm run server\" \"npm run client\" "
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "keywords": [],
   "author": "Upasana",
   "license": "ISC",
   "description": "Expense Management System",
   "dependencies": {
+    "antd": "^5.27.4",
     "bootstrap": "^5.3.8",
     "colors": "^1.4.0",
     "concurrently": "^9.2.1",

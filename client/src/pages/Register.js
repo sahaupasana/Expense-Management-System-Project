@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import { Button, Checkbox, Form, Input, message } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Spinner from "../components/Spinner";
 // import FormItem from 'antd/es/form/FormItem';
 
-const Register = () => {
+const Register = ({messageApi}) => {
+
 
   const navigate = useNavigate()
   const [Loading, setLoading] = useState(false)
@@ -15,20 +16,37 @@ const Register = () => {
     try {
       setLoading(true)
       await axios.post('/users/register', values)
-      message.success('Registration Successful')
+      messageApi.success('Registration Successful')
       setLoading(false)
       navigate("/login")
     } catch (error) {
       setLoading(false)
-      message.error('Something went wrong')
+      messageApi.error('Something went wrong')
     }
   };
+
+  //prevent for user login
+  useEffect(()=>{
+    if(localStorage.getItem('user')){
+      navigate("/");
+    }
+  },[navigate])
 
 
   return (
     <>
       <div className='register-page'>
-        {Loading && <Spinner />}
+
+        {Loading && (
+                    <div className="loading-overlay">
+                        <div className="loading-card">
+                            <Spinner />
+                            <p className="loading-text">
+                                Registering...
+                            </p>
+                        </div>
+                    </div>
+                )}
         <Form
           name="basic"
           labelCol={{ span: 8 }}
@@ -63,13 +81,8 @@ const Register = () => {
             <Input.Password />
           </Form.Item>
 
-          <Form.Item name="remember" valuePropName="checked" label={null}>
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-
-
           <div style={{ display: "flex" }}>
-            <Link to="/Login">Already Registered? Login Here</Link>
+            <Link to="/Login">Already Registered? Login </Link>
           </div>
           <br />
           <Form.Item label={null} wrapperCol={{ span: 30 }}>
