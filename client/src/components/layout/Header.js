@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+
 const Header = () => {
 
   const [loginUser, setLoginUser] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'))
     if (user) {
       setLoginUser(user)
     }
-  })
+  },[])
+
+
+  const logoutHandler=()=>{
+    localStorage.removeItem('user')
+    navigate('./login')
+  }
 
   return (
     <nav className="navbar navbar-expand-lg bg-light">
@@ -34,7 +43,8 @@ const Header = () => {
               <p className='nav-link'> {loginUser && loginUser.name}</p>
              </li>
             <li className='nav-item'>
-              <button  className='btn btn-primary'> Logout </button>
+              <button  className='btn btn-primary'
+              onClick={logoutHandler} > Logout </button>
               </li>
 
           </ul>
