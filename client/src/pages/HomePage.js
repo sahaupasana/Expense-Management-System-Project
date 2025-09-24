@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Modal, Form, Input, Select ,message } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Modal, Form, Input, Select, message, Table } from 'antd';
 import Layout from '../components/layout/Layout'
 import axios from 'axios';
 import Spinner from "../components/Spinner";
@@ -11,37 +11,91 @@ import { MdCategory, MdDateRange } from "react-icons/md";
 
 const HomePage = () => {
 
-  const [showModal, setShowModal] = useState(false)
-  const[loading,setLoading] = useState(false)
-
   const [messageApi, contextHolder] = message.useMessage();
+
+  const [showModal, setShowModal] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [allTransaction, setAllTransaction] = useState(false)
+
+  //table data
+  const columns = [
+    {
+      title: 'Date',
+      dataIndex: 'date'
+    },
+    {
+      title: 'Amount',
+      dataIndex: 'amount'
+    },
+    {
+      title: 'Type',
+      dataIndex: 'type'
+    },
+    {
+      title: 'Category',
+      dataIndex: 'category'
+    },
+    {
+      title: 'Description',
+      dataIndex: 'description'
+    },
+    {
+      title: 'Actions',
+    },
+  ]
+
+  const getAllTransactions = async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem('user'))
+      setLoading(true)
+      const res = await axios.post('/transactions/get-transaction', { userid: user._id })
+      setLoading(false)
+      setAllTransaction(res.data)
+      console.log(res.data)
+
+    } catch (error) {
+      console.log(error)
+      messageApi.error("Fetch issue with transaction")
+      setLoading(false)
+    }
+  }
+
+  //useeffect hook 
+  useEffect(() => {
+    getAllTransactions()
+  }, [])
+
   //form handling 
-  const handleSubmit = async(values) => {
-   try {
-    const user = JSON.parse(localStorage.getItem('user'))
-    setLoading(true)
-    await axios.post('/transactions/add-transaction', {...values ,userid:user._id})
-    setLoading(false)
-    messageApi.success("Transaction added successfully")
-    setShowModal(false)
-   } catch (error) {
-    setLoading(false)
-    messageApi.error("Failed to add transaction")
-   }
+  const handleSubmit = async (values) => {
+    try {
+      const user = JSON.parse(localStorage.getItem('user'))
+      setLoading(true)
+      await axios.post('/transactions/add-transaction', { ...values, userid: user._id })
+      setLoading(false)
+      messageApi.success("Transaction added successfully")
+      setShowModal(false)
+    } catch (error) {
+      setLoading(false)
+      messageApi.error("Failed to add transaction")
+    }
   }
 
   return (
     <Layout>
       {contextHolder}
-      {loading && <Spinner/>}
+      {loading && <Spinner />}
       <div className='filters'>
+
         <div>Range Filters</div>
+
         <div>
           <button className='btn btn-primary'
             onClick={() => setShowModal(true)}> Add New </button>
         </div>
       </div>
-      <div className='content'></div>
+      <div className='content'>
+        <Table columns={columns} dataSource={allTransaction} />
+      </div>
 
       <Modal title='Add Transaction'
         open={showModal}
@@ -49,8 +103,8 @@ const HomePage = () => {
         footer={false}>
 
         <Form layout='vertical' onFinish={handleSubmit}>
-          
-          <Form.Item label={<span><FaDollarSign className="icon" /> Amount</span>}name='amount'>
+
+          <Form.Item label={<span><FaDollarSign className="icon" /> Amount</span>} name='amount'>
             <Input type="text" />
           </Form.Item>
 
