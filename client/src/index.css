@@ -1,3 +1,4 @@
+
 /* Global Reset */
 * {
   padding: 0;
@@ -18,8 +19,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background:
-  linear-gradient(135deg, rgba(16, 185, 129, 0.9) 0%, rgba(8, 83, 60, 0.9) 50%, rgba(12, 216, 158, 0.9) 100%);
+  background-image:url('../../images/money.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
 }
@@ -391,3 +394,103 @@
     font-size: 15px;
   }
 }
+
+/* transaction page  or Home page */
+
+.filters{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: #ecfdf5;
+  border: 1.5px solid #10b981;
+  border-radius: 12px;
+  padding: 14px 22px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  color: #065f46;
+  box-shadow: 0px 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+
+
+/* 🌿 Modal Container */
+.ant-modal-content {
+  border-radius: 16px;
+  padding: 24px;
+  background: #f9fdfb;
+  border: 2px solid #10b981;
+  box-shadow: 0px 8px 24px rgba(16, 185, 129, 0.2);
+}
+
+.ant-modal-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #065f46;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* 🌿 Form Labels */
+.ant-form-item-label > label {
+  font-weight: 600;
+  color: #064e3b;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+}
+
+/* 🌿 Input & Select Fields */
+.ant-input,
+.ant-select-selector {
+  border-radius: 10px !important;
+  border: 1.5px solid #10b981 !important;
+  padding: 10px 14px;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+}
+
+.ant-input:focus,
+.ant-select-selector:focus,
+.ant-input:hover,
+.ant-select-selector:hover {
+  border-color: #059669 !important;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+/* Placeholder */
+.ant-input::placeholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* 🌿 Save Button */
+.btn-primary {
+  background-color: #10b981 !important;
+  border: none !important;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+  background-color: #059669 !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0px 6px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* 🌿 Category Dropdown */
+.ant-select-dropdown {
+  border-radius: 12px !important;
+  box-shadow: 0px 6px 18px rgba(16, 185, 129, 0.25) !important;
+}
+
+.ant-select-item {
+  padding: 10px 14px !important;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+

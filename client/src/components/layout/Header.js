@@ -12,17 +12,21 @@ const Header = () => {
     if (user) {
       setLoginUser(user)
     }
-  },[])
+  }, [])
 
 
-  const logoutHandler=()=>{
+  const logoutHandler = () => {
     localStorage.removeItem('user')
     navigate('./login')
   }
 
   return (
-    <nav className="navbar navbar-expand-lg bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
       <div className="container-fluid">
+        <Link className="navbar-brand" to="/">
+         Spenzo 
+        </Link>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -35,17 +39,15 @@ const Header = () => {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <Link className="navbar-brand" to="/">
-            Expense Management
-          </Link>
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <p className='nav-link'> {loginUser && loginUser.name}</p>
-             </li>
+          <ul className="navbar-nav ms-auto align-items-center">
+            <li className="nav-item d-flex align-items-center me-2">
+              <span className='nav-link'>{loginUser && loginUser.name} </span>
+            </li>
             <li className='nav-item'>
-              <button  className='btn btn-primary'
-              onClick={logoutHandler} > Logout </button>
-              </li>
+              <button className='btn btn-primary' onClick={logoutHandler} >
+                Logout
+              </button>
+            </li>
 
           </ul>
         </div>

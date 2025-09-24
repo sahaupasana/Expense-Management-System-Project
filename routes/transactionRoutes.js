@@ -8,7 +8,7 @@ const router = express.Router()
 //add transaction post method 
 router.post('/add-transaction', addTransaction)
 
-//get transactions
-router.get('/get-transaction',getAllTransaction)
+//get transactions with sending the user
+router.post('/get-transaction',getAllTransaction)
 
 module.exports = router
