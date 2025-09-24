@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Form, Input, Select, message, Table } from 'antd';
+import { Modal, Form, Input, Select, message, Table , DatePicker } from 'antd';
 import Layout from '../components/layout/Layout'
 import axios from 'axios';
 import Spinner from "../components/Spinner";
@@ -8,6 +8,7 @@ import Spinner from "../components/Spinner";
 import { FaDollarSign, FaList, FaRegStickyNote } from "react-icons/fa";
 import { MdCategory, MdDateRange } from "react-icons/md";
 
+const {RangePicker} = DatePicker
 
 const HomePage = () => {
 
@@ -16,6 +17,8 @@ const HomePage = () => {
   const [showModal, setShowModal] = useState(false)
   const [loading, setLoading] = useState(false)
   const [allTransaction, setAllTransaction] = useState(false)
+  const [frequency , setFrequency] = useState('7');
+  const[selectedDate , setSelectedDate] = useState([])
 
   //table data
   const columns = [
@@ -48,7 +51,8 @@ const HomePage = () => {
     try {
       const user = JSON.parse(localStorage.getItem('user'))
       setLoading(true)
-      const res = await axios.post('/transactions/get-transaction', { userid: user._id })
+      const res = await axios.post('/transactions/get-transaction', { userid: user._id , 
+        frequency , selectedDate})
       setLoading(false)
       setAllTransaction(res.data)
       console.log(res.data)
@@ -63,7 +67,7 @@ const HomePage = () => {
   //useeffect hook 
   useEffect(() => {
     getAllTransactions()
-  }, [])
+  }, [frequency , selectedDate])
 
   //form handling 
   const handleSubmit = async (values) => {
@@ -86,7 +90,16 @@ const HomePage = () => {
       {loading && <Spinner />}
       <div className='filters'>
 
-        <div>Range Filters</div>
+        <div>
+          <h6>Select Frequency</h6>
+          <Select value = {frequency} onChange={(values)=>setFrequency(values)}>
+            <Select.Option value ='7'>Last 1 Week</Select.Option>
+            <Select.Option value ='30'>Last 1 Month</Select.Option>
+            <Select.Option value = '365'>Last 1 Year</Select.Option>
+            <Select.Option value = 'custom'>Custom</Select.Option>
+          </Select>
+          {frequency === 'custom' && <RangePicker value = {selectedDate} onChange ={(values) =>setSelectedDate(values)}/>}
+        </div>
 
         <div>
           <button className='btn btn-primary'
