@@ -1,4 +1,3 @@
-
 /* Global Reset */
 * {
   padding: 0;
@@ -19,7 +18,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image:url('../../images/money.png');
+  background-image: url('../../images/money.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -36,7 +35,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: 
+  background-image:
     url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><text x="20" y="40" font-size="24" fill="%23ffffff" opacity="0.05">$</text><text x="150" y="80" font-size="20" fill="%23ffffff" opacity="0.04">💰</text><text x="80" y="120" font-size="18" fill="%23ffffff" opacity="0.06">₹</text><text x="170" y="160" font-size="22" fill="%23ffffff" opacity="0.04">💳</text><text x="30" y="180" font-size="16" fill="%23ffffff" opacity="0.05">€</text><text x="120" y="30" font-size="20" fill="%23ffffff" opacity="0.04">📊</text><text x="60" y="90" font-size="18" fill="%23ffffff" opacity="0.05">£</text><text x="180" y="40" font-size="16" fill="%23ffffff" opacity="0.04">💵</text><text x="40" y="140" font-size="20" fill="%23ffffff" opacity="0.05">¥</text><text x="140" y="180" font-size="18" fill="%23ffffff" opacity="0.04">📈</text></svg>'),
     radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.1) 0%, transparent 60%),
     radial-gradient(circle at 80% 70%, rgba(5, 150, 105, 0.08) 0%, transparent 60%),
@@ -47,9 +46,12 @@
 }
 
 @keyframes floatPattern {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) scale(1);
   }
+
   50% {
     transform: translateY(-10px) scale(1.02);
   }
@@ -64,7 +66,7 @@
   backdrop-filter: blur(10px);
   padding: 45px 55px;
   border-radius: 20px;
-  box-shadow: 
+  box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.1),
     0 10px 20px rgba(0, 0, 0, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
@@ -77,7 +79,7 @@
 .login-page .ant-form:hover,
 .register-page .ant-form:hover {
   transform: translateY(-5px);
-  box-shadow: 
+  box-shadow:
     0 25px 50px rgba(0, 0, 0, 0.15),
     0 15px 25px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
@@ -110,9 +112,12 @@
 }
 
 @keyframes bounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(-3px) rotate(5deg);
   }
@@ -129,8 +134,8 @@
 }
 
 /* Form Labels */
-.login-page .ant-form-item-label > label,
-.register-page .ant-form-item-label > label {
+.login-page .ant-form-item-label>label,
+.register-page .ant-form-item-label>label {
   font-weight: 600;
   color: #2c3e50;
   font-size: 14px;
@@ -170,7 +175,7 @@
   font-weight: 600;
   border-radius: 12px;
   transition: all 0.3s ease;
-  box-shadow: 
+  box-shadow:
     0 8px 20px rgba(16, 185, 129, 0.3),
     0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -193,7 +198,7 @@
 .register-page .ant-btn-primary:hover {
   background: linear-gradient(135deg, #047857 0%, #065f46 100%);
   transform: translateY(-2px);
-  box-shadow: 
+  box-shadow:
     0 12px 25px rgba(16, 185, 129, 0.4),
     0 6px 12px rgba(0, 0, 0, 0.15);
 }
@@ -278,6 +283,7 @@
     opacity: 0;
     backdrop-filter: blur(0px);
   }
+
   to {
     opacity: 1;
     backdrop-filter: blur(8px);
@@ -290,7 +296,7 @@
   backdrop-filter: blur(20px);
   padding: 40px;
   border-radius: 20px;
-  box-shadow: 
+  box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.15),
     0 10px 20px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
@@ -308,6 +314,7 @@
     opacity: 0;
     transform: scale(0.8) translateY(-30px) rotateX(15deg);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0) rotateX(0deg);
@@ -337,7 +344,7 @@
 .loading-card.dark {
   background: rgba(30, 30, 30, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 
+  box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.3),
     0 10px 20px rgba(0, 0, 0, 0.2);
 }
@@ -352,6 +359,7 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+
   .login-page .ant-form,
   .register-page .ant-form {
     padding: 35px 25px;
@@ -369,13 +377,14 @@
     margin: 20px;
     border-radius: 16px;
   }
-  
+
   .loading-text {
     font-size: 16px;
   }
 }
 
 @media (max-width: 480px) {
+
   .login-page .ant-form,
   .register-page .ant-form {
     padding: 25px 20px;
@@ -397,7 +406,7 @@
 
 /* transaction page  or Home page */
 
-.filters{
+.filters {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -432,7 +441,7 @@
 }
 
 /* 🌿 Form Labels */
-.ant-form-item-label > label {
+.ant-form-item-label>label {
   font-weight: 600;
   color: #064e3b;
   font-size: 14px;
@@ -493,4 +502,71 @@
   align-items: center;
   gap: 10px;
 }
+
+/* Increase width of Select dropdown */
+.ant-select-dropdown {
+  min-width: 150px
+}
+
+/* Style the options */
+.ant-select-item {
+  font-size: 14px;
+  color: #333;
+  padding: 8px 12px;
+}
+
+/* Hover effect for options */
+.ant-select-item-option-active,
+.ant-select-item-option:hover {
+  background-color: #e6f7e6 !important;
+  /* light green hover */
+  color: #0a7f0a !important;
+  /* darker green text */
+}
+
+/* Selected option */
+.ant-select-item-option-selected {
+  background-color: #b3e6b3 !important;
+  color: #0a7f0a !important;
+}
+
+/* Container box for switch icons */
+.switch-icons {
+  gap: 15px;
+  background: #f0fdf4;
+  border: 2px solid #10b981;
+  border-radius: 12px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect */
+.switch-icons:hover {
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+/* Style for each icon */
+.switch-icon {
+  font-size: 22px;
+  color: #0af0a3;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Default inactive look */
+.inactive-icon {
+  color: #6b7280; 
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Active (selected) icon */
+.active-icon {
+  color: #10b981; /* green theme */
+  font-size: 1.8rem; /* make active slightly bigger */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
 

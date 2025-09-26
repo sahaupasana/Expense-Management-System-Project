@@ -4,6 +4,8 @@ import Layout from '../components/layout/Layout'
 import axios from 'axios';
 import Spinner from "../components/Spinner";
 import moment from 'moment';
+import { UnorderedListOutlined, AreaChartOutlined } from '@ant-design/icons'
+import Analytics from '../components/Analytics'
 
 // Import icons
 import { FaDollarSign, FaList, FaRegStickyNote } from "react-icons/fa";
@@ -20,6 +22,8 @@ const HomePage = () => {
   const [allTransaction, setAllTransaction] = useState(false)
   const [frequency, setFrequency] = useState('7');
   const [selectedDate, setSelectedDate] = useState([])
+  const [type, setType] = useState('all')
+  const [viewData, setViewData] = useState('table')
 
   //table data
   const columns = [
@@ -49,27 +53,28 @@ const HomePage = () => {
     },
   ]
 
-  const getAllTransactions = async () => {
-    try {
-      const user = JSON.parse(localStorage.getItem('user'))
-      setLoading(true)
-      const res = await axios.post('/transactions/get-transaction',
-        { userid: user._id, frequency, selectedDate })
-      setLoading(false)
-      setAllTransaction(res.data)
-      console.log(res.data)
 
-    } catch (error) {
-      console.log(error)
-      messageApi.error("Fetch issue with transaction")
-      setLoading(false)
-    }
-  }
 
   //useeffect hook 
   useEffect(() => {
+    const getAllTransactions = async () => {
+      try {
+        const user = JSON.parse(localStorage.getItem('user'))
+        setLoading(true)
+        const res = await axios.post('/transactions/get-transaction',
+          { userid: user._id, frequency, selectedDate, type })
+        setLoading(false)
+        setAllTransaction(res.data)
+        console.log(res.data)
+
+      } catch (error) {
+        console.log(error)
+        messageApi.error("Fetch issue with transaction")
+        setLoading(false)
+      }
+    };
     getAllTransactions()
-  }, [frequency, selectedDate])
+  }, [frequency, selectedDate, type])
 
   //form handling 
   const handleSubmit = async (values) => {
@@ -93,7 +98,7 @@ const HomePage = () => {
       <div className='filters'>
 
         <div>
-          <h6>Select Frequency</h6>
+          <h6>Select Date </h6>
           <Select value={frequency} onChange={(values) => setFrequency(values)}>
             <Select.Option value='7'>Last 1 Week</Select.Option>
             <Select.Option value='30'>Last 1 Month</Select.Option>
@@ -104,12 +109,40 @@ const HomePage = () => {
         </div>
 
         <div>
+          <h6>Select Type of transaction </h6>
+          <Select value={type} onChange={(values) => setType(values)}>
+            <Select.Option value='all'>All</Select.Option>
+            <Select.Option value='income'>Income</Select.Option>
+            <Select.Option value='expense'>Expense</Select.Option>
+          </Select>
+        </div>
+
+        <div className='switch-icons'>
+          <UnorderedListOutlined
+            className={`mx-2 ${viewData === 'table' ? 'active-icon' : 'inactive-icon'}`}
+            onClick={() => setViewData('table')}
+          />
+
+          <AreaChartOutlined
+            className={`mx-2 ${viewData === 'analytics' ? 'active-icon' : 'inactive-icon'}`}
+            onClick={() => setViewData('analytics')} />
+        </div>
+
+
+        <div>
           <button className='btn btn-primary'
-            onClick={() => setShowModal(true)}> Add New </button>
+            onClick={() => setShowModal(true)}>
+            Add New </button>
         </div>
       </div>
+
       <div className='content'>
-        <Table columns={columns} dataSource={allTransaction} />
+        {viewData === 'table' ?
+          <Table columns={columns} dataSource={allTransaction} />
+          :
+          <Analytics allTransaction={allTransaction} />
+        }
+
       </div>
 
       <Modal title='Add Transaction'
