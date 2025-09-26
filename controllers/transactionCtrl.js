@@ -4,7 +4,7 @@ const moment = require('moment')
 
 const getAllTransaction = async (req, res) => {
     try {
-        const { frequency } = req.body
+        const { frequency , selectedDate } = req.body
         const transactions = await transactionModel.find({
             ...(frequency !== 'custom' ? {
                 date: {
