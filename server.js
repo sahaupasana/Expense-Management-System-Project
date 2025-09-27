@@ -4,6 +4,7 @@ const morgan=require('morgan')
 const dotenv=require('dotenv')
 const colors=require('colors')
 const connectdb = require('./config/connectdb')
+const path = require('path');
 
 //congig the .dot env file 
 dotenv.config()
@@ -23,6 +24,13 @@ app.use(cors())
 app.use('/api/v1/users',require('./routes/userRoute'))
 //transactionroutes 
 app.use('/api/v1/transactions',require('./routes/transactionRoutes'))
+
+// Serve React build for all other routes
+app.use(express.static(path.join(__dirname, 'client', 'build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+});
+
 //port 
 const PORT = process.env.PORT || 8080 ;
 
