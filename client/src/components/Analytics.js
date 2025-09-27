@@ -4,6 +4,16 @@ import { Progress } from 'antd'
 
 const Analytics = ({ allTransaction }) => {
 
+    //category
+    const categories = ['salary',
+        'tip',
+        'freelance',
+        'fees',
+        'food',
+        'medicine',
+        'groceries',
+        'bills']
+
     //total transactions
     const totalTransaction = allTransaction.length
     const totalIncomeTransaction = allTransaction.filter(transaction => transaction.type === 'income')
@@ -26,9 +36,9 @@ const Analytics = ({ allTransaction }) => {
     const totalExpenseTurnoverPercent = (totalExpenseTurnOver / totalTurnover) * 100
 
     return (
-        <>
+        <div className='analytics-container'>
             <div className='row m-3 '>
-                <div className='col-md-4'>
+                <div className='col-md-6'>
                     <div className='card'>
                         <div className='card-header'>
                             Total Transaction Percentage
@@ -53,7 +63,7 @@ const Analytics = ({ allTransaction }) => {
                     </div>
                 </div>
 
-                <div className='col-md-4'>
+                <div className='col-md-6'>
                     <div className='card'>
                         <div className='card-header'>
                             Total Transaction Turnover
@@ -78,7 +88,60 @@ const Analytics = ({ allTransaction }) => {
                     </div>
                 </div>
             </div>
-        </>
+
+            <div className='row m-3'>
+                <div className='col-md-6'>
+                    <h4>Category wise Income</h4>
+                    {
+                        categories.map(category => {
+                            const amount = allTransaction.filter(
+                                transaction => transaction.type === 'income'
+                                    && transaction.category === category).reduce((
+                                        acc, transaction) => acc + transaction.amount, 0)
+
+                            return (
+                                amount > 0 && (
+                                    <div className='card'>
+                                        <div className='card-body'>
+                                            <h5>{category}</h5>
+                                            <Progress
+                                                percent={((amount / totalIncomeTurnOver) * 100).toFixed(0)} />
+                                        </div>
+                                    </div>
+                                )
+                            )
+                        }
+                        )
+                    }
+                </div>
+
+                <div className='col-md-6'>
+                    <h4>Category wise Expense</h4>
+                    {
+                        categories.map(category => {
+                            const amount = allTransaction.filter(
+                                transaction => transaction.type === 'expense'
+                                    && transaction.category === category).reduce((
+                                        acc, transaction) => acc + transaction.amount, 0)
+
+                            return (
+                                amount > 0 && (
+                                    <div className='card'>
+                                        <div className='card-body'>
+                                            <h5>{category}</h5>
+                                            <Progress
+                                                percent={((amount / totalExpenseTurnOver) * 100).toFixed(0)} />
+                                        </div>
+                                    </div>
+                                )
+                            )
+                        }
+                        )
+                    }
+                </div>
+            </div>
+
+        </div>
     )
 }
 

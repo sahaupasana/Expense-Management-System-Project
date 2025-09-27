@@ -1,3 +1,4 @@
+
 /* Global Reset */
 * {
   padding: 0;
@@ -569,4 +570,386 @@
   transition: all 0.3s ease-in-out;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
+.ant-table-wrapper {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  font-family: 'Inter', sans-serif;
+}
+
+.ant-table-thead > tr > th {
+  background: linear-gradient(135deg, #448a6d 0%,#10b981  100%) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  padding: 20px !important;
+  border: none !important;
+  text-align: center;
+}
+
+.ant-table-tbody > tr {
+  background: rgba(255, 255, 255, 0.7) !important;
+  transition: all 0.3s ease;
+}
+
+.ant-table-tbody > tr:hover {
+  background: rgba(102, 126, 234, 0.1) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+}
+
+.ant-table-tbody > tr > td {
+  padding: 18px !important;
+  border: none !important;
+  text-align: center;
+  font-weight: 500;
+}
+
+.text-success {
+  color: #059669 !important;
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.text-danger {
+  color: #dc2626 !important;
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.ant-btn {
+  border-radius: 10px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.ant-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+/* Background with animated gradient and pattern */
+.analytics-container {
+  padding: 20px;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(5, 150, 105, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(34, 197, 94, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated background pattern */
+.analytics-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25px 25px, rgba(16, 185, 129, 0.1) 2px, transparent 0),
+    radial-gradient(circle at 75px 75px, rgba(5, 150, 105, 0.05) 1px, transparent 0);
+  background-size: 100px 100px, 50px 50px;
+  animation: float 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+/* Cards Styling */
+.card {
+  background: rgba(255, 255, 255, 0.808) !important;
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 40px 80px rgba(16, 185, 129, 0.3) !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
+}
+
+/* Card Headers */
+.card-header {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: white !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  padding: 24px !important;
+  border: none !important;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s;
+}
+
+.card-header:hover::before {
+  left: 100%;
+}
+
+/* Card Body */
+.card-body {
+  padding: 32px !important;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Income/Expense Text Styling */
+.text-success {
+  color: #f7bcbc !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+  background: linear-gradient(135deg, #5bf1bf 0%, #34d399 100%);
+  padding: 12px 24px;
+  border-radius: 50px;
+  display: inline-block;
+  margin: 8px;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.text-success:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 15px 35px rgba(16, 185, 129, 0.5);
+}
+
+.text-danger {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+  background: linear-gradient(135deg, #d1c1c1 0%, #f87171 100%);
+  padding: 12px 24px;
+  border-radius: 50px;
+  display: inline-block;
+  margin: 8px;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.text-danger:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 15px 35px rgba(231, 10, 10, 0.5);
+}
+
+/* Progress Circles */
+.ant-progress-circle {
+  margin: 16px !important;
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+}
+
+.ant-progress-circle:hover {
+  transform: scale(1.15) rotate(10deg);
+}
+
+/* Category Cards with Color Variations */
+.category-card-income {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(52, 211, 153, 0.15) 100%) !important;
+  border: 1px solid rgba(16, 185, 129, 0.3) !important;
+}
+
+.category-card-expense {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(248, 113, 113, 0.15) 100%) !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+/* Category Progress Bars with Dynamic Colors */
+.category-progress-income .ant-progress-bg {
+  background: rgba(16, 185, 129, 0.2) !important;
+  border-radius: 15px !important;
+  height: 12px !important;
+}
+
+.category-progress-income .ant-progress-inner .ant-progress-bg {
+  background: linear-gradient(90deg, #10b981 0%, #34d399 50%, #6ee7b7 100%) !important;
+  border-radius: 15px !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+  height: 12px !important;
+}
+
+.category-progress-expense .ant-progress-bg {
+  background: rgba(239, 68, 68, 0.2) !important;
+  border-radius: 15px !important;
+  height: 12px !important;
+}
+
+.category-progress-expense .ant-progress-inner .ant-progress-bg {
+  background: linear-gradient(90deg, #ef4444 0%, #f87171 50%, #fca5a5 100%) !important;
+  border-radius: 15px !important;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+  height: 12px !important;
+}
+
+/* Category Headers */
+h4 {
+  color: rgba(255, 255, 255, 0.863) !important;
+  font-weight: 700 !important;
+  font-size: 32px !important;
+  text-align: center;
+  margin-bottom: 32px !important;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  position: relative;
+  background: linear-gradient(45deg, #ffffff 0%, #10b981 50%, #ffffff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h4::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 6px;
+  background: linear-gradient(90deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
+  margin: 16px auto;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.5);
+}
+
+/* Category Titles */
+h5 {
+  color: rgb(45, 100, 66) !important;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  margin-bottom: 16px !important;
+  text-transform: capitalize;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Row Spacing */
+.row {
+  margin: 40px 0 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .analytics-container {
+    padding: 16px;
+  }
+  
+  h4 {
+    font-size: 28px !important;
+    margin-bottom: 28px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .analytics-container {
+    padding: 12px;
+  }
+  
+  .card-header {
+    font-size: 16px !important;
+    padding: 20px !important;
+  }
+  
+  .card-body {
+    padding: 20px !important;
+  }
+  
+  .text-success, .text-danger {
+    font-size: 16px !important;
+    padding: 10px 20px;
+    margin: 6px;
+  }
+  
+  h4 {
+    font-size: 24px !important;
+    margin-bottom: 24px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .text-success, .text-danger {
+    font-size: 14px !important;
+    padding: 8px 16px;
+    display: block;
+    margin-bottom: 12px;
+  }
+  
+  .card-header {
+    font-size: 14px !important;
+    padding: 16px !important;
+  }
+  
+  h4 {
+    font-size: 20px !important;
+  }
+}
+
+
+
+/* Layout Fix */
+body, html {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.main-content {
+  min-height: calc(100vh - 200px); /* Adjust based on your header height */
+  padding-bottom: 20px;
+}
+
+.content {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Remove any conflicting margin/padding from existing content class */
+.content.analytics-container {
+  margin-bottom: 0;
+}
