@@ -27,7 +27,7 @@ app.use('/api/v1/transactions',require('./routes/transactionRoutes'))
 
 // Serve React build for all other routes
 app.use(express.static(path.join(__dirname, 'client', 'build')));
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 });
 
